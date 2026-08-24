@@ -279,6 +279,88 @@ body {
 }
 
 /* =========================
+   LOADING PROGRESS INDICATOR
+========================= */
+
+.loading-container {
+  margin-top: 25px;
+  background: #fffdf7;
+  border: 2px solid #e7dfce;
+  border-radius: 20px;
+  padding: 26px 20px;
+  box-shadow: 7px 7px 0 #dfe7d9;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  animation: fadeIn 0.3s ease;
+}
+
+.loading-spinner {
+  width: 44px;
+  height: 44px;
+  border: 4px solid #e7dfce;
+  border-top-color: #e76f32;
+  border-right-color: #354f32;
+  border-radius: 50%;
+  animation: spin 0.85s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.loading-text-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.loading-title {
+  color: #354f32;
+  font-size: 19px;
+  font-weight: 800;
+}
+
+.loading-subtitle {
+  color: #687064;
+  font-size: 15px;
+  font-weight: 600;
+  min-height: 22px;
+}
+
+.loading-bar {
+  width: 100%;
+  max-width: 380px;
+  height: 8px;
+  background: #ede6d8;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.loading-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #e76f32, #f4a261, #354f32);
+  border-radius: 999px;
+  transition: width 0.5s ease-in-out;
+}
+
+/* =========================
    RESULTS
 ========================= */
 

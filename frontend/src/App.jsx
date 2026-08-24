@@ -7,6 +7,14 @@ function App() {
   const [message, setMessage] = useState("");
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [loadingStep, setLoadingStep] = useState(0);
+
+  const loadingSteps = [
+    "📄 Extracting text from PDF resume...",
+    "🔍 Identifying technical skills and experience...",
+    "🤖 Running AI recruiter evaluation with Groq LLM...",
+    "✨ Generating match score and suggestions...",
+  ];
 
   const handleAnalyze = async () => {
     if (!resume) {
@@ -20,8 +28,13 @@ function App() {
     }
 
     setLoading(true);
+    setLoadingStep(0);
     setMessage("");
     setResult(null);
+
+    const stepInterval = setInterval(() => {
+      setLoadingStep((prev) => (prev < 3 ? prev + 1 : prev));
+    }, 1400);
 
     try {
       const formData = new FormData();
@@ -58,6 +71,7 @@ function App() {
       console.error(error);
       setMessage(error.message || "Something went wrong.");
     } finally {
+      clearInterval(stepInterval);
       setLoading(false);
     }
   };
@@ -156,7 +170,24 @@ function App() {
             {loading ? "Analyzing Resume..." : "Analyze Resume →"}
           </button>
 
-          {message && <p className="message">{message}</p>}
+          {/* Loading Progress State */}
+          {loading && (
+            <div className="loading-container">
+              <div className="loading-spinner"></div>
+              <div className="loading-text-container">
+                <h3 className="loading-title">Analyzing Resume with AI...</h3>
+                <p className="loading-subtitle">{loadingSteps[loadingStep]}</p>
+              </div>
+              <div className="loading-bar">
+                <div
+                  className="loading-bar-fill"
+                  style={{ width: `${(loadingStep + 1) * 25}%` }}
+                ></div>
+              </div>
+            </div>
+          )}
+
+          {message && !loading && <p className="message">{message}</p>}
         </div>
 
         {/* Results */}
