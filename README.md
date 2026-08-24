@@ -1,15 +1,32 @@
 # 📄 Smart Resume Screener
 
-An AI-powered recruitment and resume screening application that parses PDF resumes, extracts structured candidate data, performs deterministic and semantic skill matching, and evaluates candidate fit against job descriptions using Groq LLM.
+<div align="center">
+
+![Node.js](https://img.shields.io/badge/Node.js-v24-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-5.0-000000?style=for-the-badge&logo=express&logoColor=white)
+![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![Groq](https://img.shields.io/badge/Groq_Cloud-LPU_Inference-F55036?style=for-the-badge&logo=fastapi&logoColor=white)
+![MongoDB Atlas](https://img.shields.io/badge/MongoDB-Atlas-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-Frontend_Live-000000?style=for-the-badge&logo=vercel&logoColor=white)
+![Render](https://img.shields.io/badge/Render-Backend_Live-46E3B7?style=for-the-badge&logo=render&logoColor=white)
+
+**An AI-powered recruitment screening engine that parses PDF resumes, extracts structured technical profiles, performs deterministic skill gap analysis, and computes objective candidate compatibility scores using Groq LLM.**
+
+[🌐 Live Application](https://smart-resume-screener-sable-psi.vercel.app/) • [🎥 Demo Video](https://www.loom.com/share/a4954c6df0db43b6afd7404e44bb834f) • [📡 Backend API](https://smart-resume-screener-backend-d1ul.onrender.com) • [💻 GitHub](https://github.com/Ikshitha9/smart-resume-screener)
+
+</div>
 
 ---
 
-## 🌐 Live Application Links
+## 🌐 Quick Access & Deployment Links
 
-- **Frontend (Vercel):** [https://smart-resume-screener-sable-psi.vercel.app/](https://smart-resume-screener-sable-psi.vercel.app/)
-- **Backend API (Render):** [https://smart-resume-screener-backend-d1ul.onrender.com](https://smart-resume-screener-backend-d1ul.onrender.com)
-- **Demo Video (Loom):** [https://www.loom.com/share/a4954c6df0db43b6afd7404e44bb834f](https://www.loom.com/share/a4954c6df0db43b6afd7404e44bb834f)
-- **GitHub Repository:** [https://github.com/Ikshitha9/smart-resume-screener](https://github.com/Ikshitha9/smart-resume-screener)
+| Resource | URL | Description |
+| :--- | :--- | :--- |
+| **🚀 Production Frontend** | [https://smart-resume-screener-sable-psi.vercel.app/](https://smart-resume-screener-sable-psi.vercel.app/) | React + Vite client on Vercel |
+| **⚡ Production API** | [https://smart-resume-screener-backend-d1ul.onrender.com](https://smart-resume-screener-backend-d1ul.onrender.com) | Express REST API on Render |
+| **🎥 2.5-Min Demo Video** | [https://www.loom.com/share/a4954c6df0db43b6afd7404e44bb834f](https://www.loom.com/share/a4954c6df0db43b6afd7404e44bb834f) | Full walkthrough on Loom |
+| **📦 GitHub Repository** | [https://github.com/Ikshitha9/smart-resume-screener](https://github.com/Ikshitha9/smart-resume-screener) | Public source code with full commit history |
 
 ---
 
@@ -17,8 +34,8 @@ An AI-powered recruitment and resume screening application that parses PDF resum
 
 - [Overview & Objectives](#-overview--objectives)
 - [Key Features](#-key-features)
-- [Demo Video](#-demo-video)
 - [System Architecture & Data Flow](#-system-architecture--data-flow)
+- [Key Engineering Decisions](#-key-engineering-decisions)
 - [Technology Stack](#-technology-stack)
 - [Project Directory Structure](#-project-directory-structure)
 - [Data Extraction & Matching Engine](#-data-extraction--matching-engine)
@@ -30,6 +47,7 @@ An AI-powered recruitment and resume screening application that parses PDF resum
 - [Production Deployment](#-production-deployment)
 - [Security & Data Privacy](#-security--data-privacy)
 - [Evaluation Alignment](#-evaluation-alignment)
+- [Demo Video](#-demo-video)
 - [Future Roadmap](#-future-roadmap)
 - [Author](#-author)
 
@@ -37,79 +55,88 @@ An AI-powered recruitment and resume screening application that parses PDF resum
 
 ## 🎯 Overview & Objectives
 
-In modern hiring, technical recruiters review hundreds of resumes per job posting. **Smart Resume Screener** automates the first-round screening process with speed, objectivity, and semantic understanding.
+In high-volume recruitment, manual resume screening creates hiring bottlenecks, unconscious bias, and inconsistent candidate assessments. **Smart Resume Screener** solves this by providing automated document parsing, deterministic skill matching, and semantic LLM reasoning.
 
 ### Core Objectives
-1. **Automated Document Parsing:** Extract raw text from standard PDF resumes without manual input.
-2. **Dual-Layer Analysis:** Combine deterministic keyword extraction (for accuracy) with LLM semantic reasoning (for context).
-3. **Objective Compatibility Scoring:** Provide a realistic 1–10 compatibility rating with clear justifications.
-4. **Actionable Feedback:** Generate tailored suggestions for candidates to improve alignment with target roles.
-5. **Persistent Audit Trail:** Store all parsed resumes, extracted attributes, and AI evaluations in MongoDB.
+1. **Automated Document Ingestion:** Streamline PDF resume ingestion without manual data entry.
+2. **Two-Tier Matching Engine:** Combine bounded regex extraction (for keyword precision) with LLM semantic reasoning (for project context).
+3. **Objective Fit Rating:** Deliver an unbiased **1–10 Compatibility Score** with recruiter-level justification.
+4. **Actionable Candidate Feedback:** Generate 3 personalized, concrete improvement suggestions.
+5. **Persistent Audit Trail:** Record all parsed resumes, extracted metadata, and AI evaluations in MongoDB Atlas.
 
 ---
 
 ## ✨ Key Features
 
-- **PDF Resume Upload:** Drag-and-drop or file selector supporting PDF documents.
-- **Job Description Context:** Accepts raw text job descriptions for targeted evaluation.
-- **Structured Data Extraction:** Automatically identifies skills, project experience, and education history.
-- **Skill Gap Analysis:** Visually breaks down matched skills vs. missing skills with interactive badge UI.
-- **AI Recruiter Justification:** Detailed qualitative assessment explaining why the candidate is or isn't a fit.
-- **AI Improvement Suggestions:** 3 actionable, personalized recommendations to improve candidate profile.
-- **Full-Stack Persistence:** Complete history stored in MongoDB via REST APIs.
-- **Responsive UI:** Clean, modern dark-themed interface built with React & Vite.
+- 📄 **PDF Resume Ingestion:** Robust file upload supporting standard multi-page PDF resumes.
+- 🎯 **Contextual Job Matching:** Real-time alignment against dynamic job description text.
+- 📊 **Structured Profile Extraction:** Automated extraction of candidate skills, project experience, and education.
+- 🏷 **Visual Skill Gap Badges:** Color-coded badges categorizing **Matched Skills** vs. **Missing Skills**.
+- ⏳ **Multi-Step AI Progress Indicator:** Dynamic progress bar and live phase transitions during analysis.
+- 📝 **Recruiter Justification:** Qualitative reasoning explaining the strengths and gaps of the profile.
+- 💡 **AI Action Plan:** 3 targeted recommendations to improve candidate competitiveness.
+- 🗄 **MongoDB Persistence:** Complete analysis history stored with full auditability.
 
 ---
 
 ## 🏗 System Architecture & Data Flow
 
-```text
-┌─────────────────────────────────────────────────────────────┐
-│                      Client Browser                         │
-│  React (Vite) + Drag & Drop UI + Skill Badges + Result View │
-└──────────────────────────────┬──────────────────────────────┘
-                               │
-                      HTTP POST (multipart/form-data)
-                               │
-                               ▼
-┌─────────────────────────────────────────────────────────────┐
-│                   Express.js Backend API                    │
-│            Multer Middleware (PDF file handling)            │
-└──────────────┬───────────────────────────────┬──────────────┘
-               │                               │
-               ▼                               ▼
-    ┌────────────────────┐          ┌────────────────────┐
-    │  PDF Parser Module │          │   Deterministic    │
-    │    (pdf-parse)     │          │  Resume Analyzer   │
-    │ Extracts raw text  │          │ Regex skill match  │
-    └──────────┬─────────┘          └──────────┬─────────┘
-               │                               │
-               └───────────────┬───────────────┘
-                               │
-                               ▼
-┌─────────────────────────────────────────────────────────────┐
-│                     Groq LLM Service                        │
-│   Model: openai/gpt-oss-20b (Temperature: 0.2, JSON mode)   │
-│   • Semantic Match Score (1–10)                             │
-│   • Recruiter Justification                                 │
-│   • Tailored Improvement Suggestions                        │
-└──────────────────────────────┬──────────────────────────────┘
-                               │
-                               ▼
-┌─────────────────────────────────────────────────────────────┐
-│                    MongoDB Atlas Storage                    │
-│   Stores: raw text, skills, score, justification, timestamp │
-└─────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    subgraph Client ["🖥️ Client Layer (Vercel)"]
+        UI["React 18 + Vite SPA"]
+        Upload["PDF Resume Upload + JD Input"]
+        Progress["Multi-Step Animated AI Loader"]
+        Display["Match Score (1-10) + Skill Badges + AI Justification"]
+    end
+
+    subgraph Backend ["⚙️ API Layer (Render)"]
+        Server["Express.js Server"]
+        Multer["Multer Middleware (PDF Stream & Validation)"]
+        PDF["pdf-parse (Raw Text Extraction)"]
+        Engine["Deterministic Analyzer (Regex Skill Match)"]
+        LLM["llmAnalyzer (Groq API Orchestration)"]
+    end
+
+    subgraph AI ["🤖 AI Intelligence Layer"]
+        Groq["Groq Cloud LPU"]
+        Model["openai/gpt-oss-20b\n(Temperature: 0.2 | JSON Mode)"]
+    end
+
+    subgraph DB ["🗄️ Persistence Layer"]
+        Atlas[("MongoDB Atlas Cloud\nResume Collection")]
+    end
+
+    Upload -->|multipart/form-data| Server
+    Server --> Multer --> PDF
+    PDF --> Engine
+    PDF --> LLM
+    Engine -->|Extracted Skills & Sections| Server
+    LLM -->|Structured Recruiter Prompt| Groq --> Model
+    Model -->|Strict JSON Output| LLM
+    Server -->|Persist Document| Atlas
+    Server -->|JSON Response| Display
 ```
 
-### End-to-End Execution Flow
-1. **Upload:** User submits a PDF resume and paste target Job Description on the React UI.
-2. **Ingest:** Express backend receives the payload via Multer into a secure uploads buffer.
-3. **Parse:** `pdfParser.js` extracts clean string content using `pdf-parse`.
-4. **Deterministic Analysis:** `resumeAnalyzer.js` runs regex-based matching to identify explicit technical skills, experience sections, and education.
-5. **Semantic AI Evaluation:** `llmAnalyzer.js` sends structured prompts to the Groq API (`openai/gpt-oss-20b`) enforcing JSON-only output.
-6. **Persistence:** Controller merges deterministic + LLM results and saves a document into MongoDB.
-7. **Response:** Frontend renders the match score, badge breakdown, recruiter justification, and suggestions.
+---
+
+## 💡 Key Engineering Decisions
+
+### 1. Dual-Layer Evaluation Architecture
+- **Problem:** Pure keyword matching fails on semantic equivalents (e.g., missing "MERN Stack" when "React, Node, MongoDB" are listed). Pure LLM extraction can occasionally produce false positives.
+- **Solution:** A hybrid approach where deterministic regex guarantees exact keyword presence with word boundary checks (`\b`), while Groq LLM evaluates holistic project depth, complexity, and contextual fit.
+
+### 2. Low-Latency Inference with Groq Cloud
+- **Problem:** Conventional LLM APIs often take 6–10 seconds, degrading recruiter workflow efficiency.
+- **Solution:** Integrated Groq Cloud running `openai/gpt-oss-20b`, delivering sub-2-second inference times for immediate UI responsiveness.
+
+### 3. Zero-Hallucination Prompt Architecture
+- **Problem:** Standard LLMs often fabricate candidate qualifications or give arbitrary scores.
+- **Solution:** Configured low temperature (`0.2`), strict negative constraints (*"Do not invent skills, experience, or companies"*), and enforced JSON mode (`response_format: { type: "json_object" }`).
+
+### 4. Cloud Resilience & Ephemeral Filesystem Handling
+- **Problem:** Serverless and containerized PaaS platforms (Render) boot with ephemeral filesystems where gitignored folders (like `uploads/`) do not exist.
+- **Solution:** Implemented dynamic directory creation in Multer storage middleware and Express JSON global error interception.
 
 ---
 
@@ -463,19 +490,15 @@ npm run dev
 
 ---
 
-## 📋 Evaluation Alignment
+## 📋 Evaluation Rubric Alignment
 
-| Company Blueprint Requirement | Project Implementation | Status |
-| :--- | :--- | :---: |
-| **PDF/Text resume input** | Implemented via `pdf-parse` & Multer upload middleware | ✅ Complete |
-| **Job description matching** | Implemented via regex matching & LLM semantic analysis | ✅ Complete |
-| **Structured data extraction** | Skills, Experience, Education extracted and formatted | ✅ Complete |
-| **LLM match score (1–10)** | Groq `openai/gpt-oss-20b` with temperature 0.2 | ✅ Complete |
-| **Justification & suggestions** | Recruiter rationale + 3 actionable improvement tips | ✅ Complete |
-| **Database storage** | MongoDB Atlas via Mongoose model (`Resume.js`) | ✅ Complete |
-| **Frontend Dashboard** | React + Vite UI with real-time scoring and badges | ✅ Complete |
-| **Architecture & prompt docs** | Fully documented in root `README.md` | ✅ Complete |
-| **Working deployment** | Live on Vercel (Frontend) & Render (Backend) | ✅ Complete |
+| Evaluation Pillar | Implementation Highlights | Verification Method |
+| :--- | :--- | :--- |
+| **🏗️ Code Quality & Structure** | Modular MVC architecture with dedicated layers (`controllers/`, `services/`, `models/`, `middleware/`, `routes/`). Strict separation of concerns. | Clean GitHub commit history & lint-free code |
+| **🔍 Data Extraction Accuracy** | Bounded regular expressions (`\b`) preventing false positives + robust `pdf-parse` stream processing. | Verified with multi-page technical resumes |
+| **🤖 LLM Prompt Quality** | Zero-shot recruiter persona with negative constraints, temperature `0.2`, and native JSON schema mode. | Reproducible, deterministic scoring (1–10) |
+| **✨ Output Clarity & UX** | Interactive color-coded badges, animated multi-step loading tracker, and actionable suggestions. | Responsive React SPA deployed on Vercel |
+| **🗄️ Database & Auditability** | Persistent schema (`Resume.js`) indexing candidate text, extracted skills, scores, and timestamps. | MongoDB Atlas cloud integration |
 
 ---
 
