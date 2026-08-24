@@ -8,6 +8,7 @@ An AI-powered recruitment and resume screening application that parses PDF resum
 
 - **Frontend (Vercel):** [https://smart-resume-screener-sable-psi.vercel.app/](https://smart-resume-screener-sable-psi.vercel.app/)
 - **Backend API (Render):** [https://smart-resume-screener-backend-d1ul.onrender.com](https://smart-resume-screener-backend-d1ul.onrender.com)
+- **Demo Video (Loom):** [https://www.loom.com/share/a4954c6df0db43b6afd7404e44bb834f](https://www.loom.com/share/a4954c6df0db43b6afd7404e44bb834f)
 - **GitHub Repository:** [https://github.com/Ikshitha9/smart-resume-screener](https://github.com/Ikshitha9/smart-resume-screener)
 
 ---
@@ -16,6 +17,7 @@ An AI-powered recruitment and resume screening application that parses PDF resum
 
 - [Overview & Objectives](#-overview--objectives)
 - [Key Features](#-key-features)
+- [Demo Video](#-demo-video)
 - [System Architecture & Data Flow](#-system-architecture--data-flow)
 - [Technology Stack](#-technology-stack)
 - [Project Directory Structure](#-project-directory-structure)
@@ -474,6 +476,18 @@ npm run dev
 | **Frontend Dashboard** | React + Vite UI with real-time scoring and badges | ✅ Complete |
 | **Architecture & prompt docs** | Fully documented in root `README.md` | ✅ Complete |
 | **Working deployment** | Live on Vercel (Frontend) & Render (Backend) | ✅ Complete |
+
+---
+
+## 🎥 Demo Video
+
+A full end-to-end 2.5-minute video demonstration showcasing:
+- PDF resume text extraction and multi-step animated AI analysis.
+- Deterministic skill extraction and skill gap analysis (Matched vs. Missing skill badges).
+- AI recruiter semantic scoring (1–10 fit rating) and justification powered by Groq LLM.
+- System architecture, zero-hallucination prompt design, and MongoDB cloud persistence.
+
+▶️ **Watch the Demo Video on Loom:** [https://www.loom.com/share/a4954c6df0db43b6afd7404e44bb834f](https://www.loom.com/share/a4954c6df0db43b6afd7404e44bb834f)
 
 ---
 
