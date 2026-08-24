@@ -29,15 +29,24 @@ function App() {
       formData.append("resume", resume);
       formData.append("jobDescription", jobDescription);
 
+      const apiUrl = import.meta.env.VITE_API_URL || "https://smart-resume-screener-backend-d1ul.onrender.com";
+
       const response = await fetch(
-       `${import.meta.env.VITE_API_URL}/api/resumes/upload`,
+        `${apiUrl}/api/resumes/upload`,
         {
           method: "POST",
           body: formData,
         }
       );
 
-      const data = await response.json();
+      const contentType = response.headers.get("content-type");
+      let data;
+      if (contentType && contentType.includes("application/json")) {
+        data = await response.json();
+      } else {
+        const text = await response.text();
+        throw new Error(`Server returned ${response.status}: ${text.slice(0, 150)}`);
+      }
 
       if (!response.ok) {
         throw new Error(data.message || "Failed to analyze resume");

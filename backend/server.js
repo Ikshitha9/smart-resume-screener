@@ -19,6 +19,13 @@ app.get("/", (req, res) => {
     });
 });
 
+app.use((err, req, res, next) => {
+    console.error("Global Error:", err);
+    res.status(err.status || 500).json({
+        message: err.message || "Internal server error"
+    });
+});
+
 const PORT = process.env.PORT || 5001;
 const MONGO_URI = process.env.MONGO_URI;
 
