@@ -30,7 +30,7 @@ function App() {
       formData.append("jobDescription", jobDescription);
 
       const response = await fetch(
-        "http://localhost:5001/api/resumes/upload",
+       `${import.meta.env.VITE_API_URL}/api/resumes/upload`,
         {
           method: "POST",
           body: formData,
