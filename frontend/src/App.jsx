@@ -181,12 +181,12 @@ function App() {
               <div className="result-card summary-card">
                 <p className="result-label">SKILL SUMMARY</p>
 
-                <div className="summary-number">
-                  {result.matchedSkills?.length || 0}
-                  <span>
-                    / {result.matchedSkills?.length || 0 + (result.missingSkills?.length || 0)}
-                  </span>
-                </div>
+               <div className="summary-number">
+  {result.matchedSkills?.length || 0}
+  <span>
+    / {(result.matchedSkills?.length || 0) + (result.missingSkills?.length || 0)}
+  </span>
+</div>
 
                 <p className="score-description">
                   Required skills matched

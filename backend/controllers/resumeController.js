@@ -1,6 +1,7 @@
 const Resume = require("../models/Resume");
 const extractTextFromPDF = require("../services/pdfParser");
 const analyzeResume = require("../services/resumeAnalyzer");
+const analyzeWithLLM = require("../services/llmAnalyzer");
 
 const uploadResume = async (req, res) => {
   try {
@@ -18,10 +19,19 @@ const uploadResume = async (req, res) => {
       });
     }
 
+    // Extract text from uploaded PDF
     const resumeText = await extractTextFromPDF(req.file.path);
 
+    // Existing rule-based analysis
     const analysis = analyzeResume(resumeText, jobDescription);
 
+    // AI-powered semantic analysis using Groq
+    const llmAnalysis = await analyzeWithLLM(
+      resumeText,
+      jobDescription
+    );
+
+    // Save everything to MongoDB
     const resume = await Resume.create({
       fileName: req.file.originalname,
       resumeText,
@@ -36,9 +46,10 @@ const uploadResume = async (req, res) => {
 
       jobDescription,
 
-matchScore: analysis.matchScore,
-justification: analysis.justification,
-suggestions: analysis.suggestions || [],
+      // LLM-generated results
+      matchScore: llmAnalysis.matchScore,
+      justification: llmAnalysis.justification,
+      suggestions: llmAnalysis.suggestions || [],
     });
 
     res.status(201).json({
